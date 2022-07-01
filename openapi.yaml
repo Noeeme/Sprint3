@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info: 
+  title: Cidade
+  description: API para 
+  version: 0.0.1
+  contact:
+    nome: Noeeme
+    email: noeeme.silva.pb@compasso.com.br
+    url: 
+servers:
+  url: http://localhost:8080/h2/login.do?jsessionid=fb503e2df4848405da5c2e2e6afef064
+  description: Sprint API
+paths:
+  /api/states:
+    get:
+      summary: Seleciona todas as cidades cadastradas
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
+        400:
+          description: Cidade não encontrada
+           content:
+            application/json:
+              example: "Not Found"
+  /api/states/{id}:
+  get:
+      summary: Seleciona cidades pelo id
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
+        400:
+          description: Cidade não encontrada
+           content:
+            application/json:
+              example: "Not Found"
+    put:
+      summary: Atualização de uma cidade
+      responses: 
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
+        400:
+          description: Cidade não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
+    delete:
+      summary: Exclusão de uma cidade
+        400:
+          description: Entidade não encontrada
+          content:
+            application/json:
+              example: "Not Found"

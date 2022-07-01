@@ -22,19 +22,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("/api/states")
 public class CidadeController {
 
-
+    @Autowired
     CidadeRepository cidadeRepository;
 
     @GetMapping
-    public List<Cidade> listar(){
-        return cidadeRepository.findAll();
+    public String listar(){
+        return "Hello, world!";
+
     }
 
-    @PostMapping
+    @PostMapping(value = "/api/states")
     @Transactional
     public ResponseEntity<Cidade> cadastrar(@RequestBody @Valid CidadeForm form, UriComponentsBuilder uriBuilder) {
         Cidade cidade = form.converter(cidadeRepository);
@@ -56,15 +55,15 @@ public class CidadeController {
     }
 
     @GetMapping("/{id}")
-    public Page<Cidade> listarPorPopulacao(@PathVariable Long populacao,
-                                           @PageableDefault(sort = "populacao", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao){
+    public Page<Cidade> listarPorPopulacao(@PathVariable Long populacao, @PageableDefault(sort = "populacao",
+            direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao){
             Page<Cidade> cidades = cidadeRepository.findByPopulacao(populacao, paginacao);
             return cidades;
     }
 
     @GetMapping("/{id}")
-    public Page<Cidade> listarPorArea(@PathVariable Long area,
-                                           @PageableDefault(sort = "populacao", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao){
+    public Page<Cidade> listarPorArea(@PathVariable Long area, @PageableDefault(sort = "populacao",
+            direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao){
         Page<Cidade> cidades = cidadeRepository.findByPopulacao(area, paginacao);
         return cidades;
     }
